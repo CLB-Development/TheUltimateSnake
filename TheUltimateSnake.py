@@ -39,7 +39,6 @@ class Snake:
         self.bodyTL = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_tl.png').convert_alpha()
         self.bodyBR = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_br.png').convert_alpha()
         self.bodyBL = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_bl.png').convert_alpha()
-        self.crunchSound = pygame.mixer.Sound('C:/Users/campb/Documents/Tech/TheUltimateSnake/Sound/crunch.wav')
 
     def snakeReset(self):
         self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
