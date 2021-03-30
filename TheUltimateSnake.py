@@ -6,7 +6,7 @@
 #     \_/  |_| |_| \___|     \___/ |_| \__||_||_| |_| |_| \__,_| \__| \___|    \____/ |_| |_| \__,_||_|\_\ \___|
                                                                                                             
 # Created by Campbell Lythe-Brown
-# Techtorium Advanced Python | Project Nibbles Revamp
+# Techtoriumtorium Advanced Python | Project Nibbles Revamp
 # Dated: 22/02/2021                                                                                                          
 
 
@@ -22,23 +22,23 @@ class Snake:
         self.snakeDirection = Vector2(1,0)
         self.newBlock = False
 
-        self.headUp = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/head_up.png').convert_alpha()
-        self.headDown = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/head_down.png').convert_alpha()
-        self.headRight = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/head_right.png').convert_alpha()
-        self.headLeft = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/head_left.png').convert_alpha()
+        self.headUp = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/head_up.png').convert_alpha()
+        self.headDown = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/head_down.png').convert_alpha()
+        self.headRight = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/head_right.png').convert_alpha()
+        self.headLeft = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/head_left.png').convert_alpha()
 		
-        self.tailUp = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/tail_up.png').convert_alpha()
-        self.tailDown = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/tail_down.png').convert_alpha()
-        self.tailRight = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/tail_right.png').convert_alpha()
-        self.tailLeft = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/tail_left.png').convert_alpha()
+        self.tailUp = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/tail_up.png').convert_alpha()
+        self.tailDown = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/tail_down.png').convert_alpha()
+        self.tailRight = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/tail_right.png').convert_alpha()
+        self.tailLeft = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/tail_left.png').convert_alpha()
 
-        self.bodyVertical = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_vertical.png').convert_alpha()
-        self.bodyHorizontal = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_horizontal.png').convert_alpha()
+        self.bodyVertical = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_vertical.png').convert_alpha()
+        self.bodyHorizontal = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_horizontal.png').convert_alpha()
 
-        self.bodyTR = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_tr.png').convert_alpha()
-        self.bodyTL = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_tl.png').convert_alpha()
-        self.bodyBR = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_br.png').convert_alpha()
-        self.bodyBL = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/body_bl.png').convert_alpha()
+        self.bodyTR = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_tr.png').convert_alpha()
+        self.bodyTL = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_tl.png').convert_alpha()
+        self.bodyBR = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_br.png').convert_alpha()
+        self.bodyBL = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/body_bl.png').convert_alpha()
 
     def snakeReset(self):
         self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
@@ -115,14 +115,14 @@ class Fruit:
         gameScreen.blit(gameApple,fruitRect)
 
     def randomizePosition(self):
-        self.x = random.randint(0,cellNumber - 1)
-        self.y = random.randint(0,cellNumber - 1)
+        (self.x, self.y) = randPosFunction(cellNumber -1, cellNumber -1)
         self.pos = Vector2(self.x,self.y)
 
 class Main:
     global gameRunning
     global gameMenu
     global gameOver
+    
     def __init__(self):
         self.gameSnake = Snake()
         self.gameFruit = Fruit()
@@ -192,23 +192,50 @@ class Main:
         scoreRect = scoreSurface.get_rect(center = (scoreX,scoreY))
         gameScreen.blit(scoreSurface,scoreRect)
 
+def randPosFunction(max_x, max_y):
+    x = random.randint(0, max_x)
+    y = random.randint(0, max_y)
+    return (x,y)
+
+def test_randPosFunction():
+    """Testing the randPosFunction Function"""
+    passTest = False
+    global testAppleX 
+    global testAppleY
+    testAppleX = -100
+    testAppleY = -100
+    i=0
+    while i < 100000:
+        (testAppleX, testAppleY) = randPosFunction(800, 800)
+        if (testAppleX >= 0) and (testAppleY <= 800):
+            if (testAppleX >= 0) and (testAppleY <=800):
+                passTest = True
+        else:
+            passTest = False
+            i=100000
+        i=i+1
+    assert passTest
+
 pygame.init()
 pygame.font.init()
-gameFont = pygame.font.Font('C:/Users/campb/Documents/Tech/TheUltimateSnake/Font/PoetsenOne-Regular.ttf',25)
+gameFont = pygame.font.Font('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Font/PoetsenOne-Regular.ttf',25)
 cellSize = 40
 cellNumber = 20
 gameScreen = pygame.display.set_mode((cellNumber * cellSize,cellNumber * cellSize))
 gameClock = pygame.time.Clock()
-gameApple = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/apple.png').convert_alpha()
-gameStartScreen = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/game_start.png')
-gameOverScreen = pygame.image.load('C:/Users/campb/Documents/Tech/TheUltimateSnake/Graphics/game_over.png')
+gameApple = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/apple.png').convert_alpha()
+gameStartScreen = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/game_start.png')
+gameOverScreen = pygame.image.load('C:/Users/campb/Documents/Techtorium/TheUltimateSnake-main/Graphics/game_over.png')
 gameSpeed = 1
 screenUpdate = pygame.USEREVENT
 pygame.time.set_timer(screenUpdate,150)
+
 mainGame = Main()
 
+isStandAlone = __name__ == "__main__"
+
 gameRunning = False
-gameMenu = True
+gameMenu = isStandAlone
 gameOver = False
 
 while gameMenu:   
@@ -248,6 +275,3 @@ while gameRunning:
     mainGame.drawElements()
     gameClock.tick(60)
     pygame.display.update()  
-
-
-     
